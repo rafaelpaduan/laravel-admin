@@ -13,7 +13,21 @@
         ],
     ];
 
-    $form="search-users";
+    $form = "search-users";
+
+    $usersArr = [];
+
+    if(isset($users['data'])) {
+
+      $usersArr = $users['data'];
+    }
+
+    $paginator = "";
+
+    foreach ($input as $key => $value) {
+      $paginator = $paginator . "&" . $key . "=" . $value;
+    }
+
     @endphp
 
 @endsection
@@ -51,19 +65,19 @@
 
     <div class="row">
         <div class="col-12">
-        @if (count($users) > 0)
+        @if (count($usersArr) > 0)
           <div class="card">
             <div class="card-body table-responsive p-0">
               <table class="table table-hover text-nowrap">
                 <thead>
                   <tr>
-                    @foreach ($users[0] as $key => $value)
+                    @foreach ($usersArr[0] as $key => $value)
                     <th>{{ $key }}</th>
                     @endforeach
                   </tr>
                 </thead>
                 <tbody>
-                @foreach ($users as $user)
+                @foreach ($usersArr as $user)
                     <tr>
                         @foreach ($user as $item)
                             <td>{{ $item }}</td>
@@ -73,9 +87,15 @@
                 </tbody>
               </table>
             </div>
+            <div class="card-footer">
+              Merda
+            </div>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
+
+          <p>Paginação: {{ $users['first_page_url'] . $paginator }}</p>
+
         @else
     
         <div class="error-page">

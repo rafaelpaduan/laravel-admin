@@ -19,7 +19,7 @@ class UserController extends Controller
         $filter = [];
         $input = [];
 
-        if($request->has('submit')){
+        if($request->has('submit') || $request->has('page')){
 
             $filters = $request->all();
 
@@ -38,8 +38,10 @@ class UserController extends Controller
                 }
             }
 
-            $users = User::where($filter)
-                            ->get()->toArray();
+            $users = User::getUsersPaginated($filter);
+
+            dd($users);
+
         }
 
         return view('Admin.Usuarios.index', compact('users', 'input'));

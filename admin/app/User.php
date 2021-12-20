@@ -36,4 +36,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function getUsersPaginated($filter){
+
+        $users = User::where($filter)
+                            ->paginate(2)
+                            ->toArray();
+
+        return $users;
+    }
 }
