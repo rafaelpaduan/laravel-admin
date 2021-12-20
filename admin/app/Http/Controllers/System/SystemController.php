@@ -16,17 +16,17 @@ class SystemController extends Controller
 
     public function loadAvg1m(){
 
-        return $this->loadAvg(0);
+        return number_format($this->loadAvg(0), 2);
     }
 
     public function loadAvg5m(){
 
-        return $this->loadAvg(1);
+        return number_format($this->loadAvg(1), 2);
     }
 
     public function loadAvg15m(){
 
-        return $this->loadAvg(2);
+        return number_format($this->loadAvg(2), 2);
     }
 
     public function systemTime(){
