@@ -37,5 +37,6 @@ class SystemController extends Controller
     public function memoryUsed(){
         
         return number_format((memory_get_usage($real_usage = true)/1024)/1024, 2);
+        // return number_format(((memory_get_peak_usage()/1024)/1024), 4);
     }
 }

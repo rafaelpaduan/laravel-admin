@@ -3,9 +3,9 @@
 return [
 
     'system' => [
-        'company_name' => 'Padutech',
-        'logo_text' => '&nbsp; padu<b>tech</b>Adm',
-        'logo_img' => '/padutech/padutech_pc_bg.png',
+        'company_name' => 'MX Soluções',
+        'logo_text' => '&nbsp; MX<b>Soluções</b>Adm',
+        'logo_img' => '/custom/mxsolucoes.png',
 
         'body_class' => 'sidebar-mini', // sidebar-collapse
         'sidebar_class' => 'sidebar-dark-info main-sidebar elevation-4',
@@ -14,6 +14,6 @@ return [
     ],
 
     'user' => [
-        'default_img' => '/bower_components/dist/img/profile.png'
+        'default_img' => '/custom/profile.svg'
     ]
 ];

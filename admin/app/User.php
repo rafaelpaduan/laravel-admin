@@ -37,11 +37,26 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public static function getUsersPaginated($filter){
+    public static function getUsersPaginated($filter, $paginate, $page){
 
-        $users = User::where($filter)
-                            ->paginate(2)
+        $users = [];
+
+        $users['count'] = User::where($filter)
+                            ->count();
+
+        $users['pages'] = number_format(ceil($users['count'] / $paginate), 0);
+
+        $users['data'] = User::where($filter)
+                            ->skip(($page - 1) * $paginate)
+                            ->take($paginate)
+                            ->get()
                             ->toArray();
+        
+        $users['items'] = count($users['data']);
+
+        $users['actual_page'] = $page;
+        $users['prev_page'] = $page - 1;
+        $users['next_page'] = $page + 1;
 
         return $users;
     }

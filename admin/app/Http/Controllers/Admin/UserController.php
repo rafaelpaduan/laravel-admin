@@ -18,12 +18,19 @@ class UserController extends Controller
         $users = [];
         $filter = [];
         $input = [];
+        $paginate = 10;
+        $page = 1;
 
         if($request->has('submit') || $request->has('page')){
 
             $filters = $request->all();
 
+            $paginate = isset($filters['paginate']) ? $filters['paginate'] : $paginate;
+            $page = isset($filters['page']) ? $filters['page'] : $page;
+
             unset($filters['_token']);
+            unset($filters['paginate']);
+            unset($filters['page']);
             unset($filters['submit']);
 
             foreach($filters as $key => $value){
@@ -38,10 +45,7 @@ class UserController extends Controller
                 }
             }
 
-            $users = User::getUsersPaginated($filter);
-
-            dd($users);
-
+            $users = User::getUsersPaginated($filter, $paginate, $page);
         }
 
         return view('Admin.Usuarios.index', compact('users', 'input'));

@@ -18,10 +18,10 @@
             endpoint="{{ Route('systemtime') }}"
             interval="1000"
           ></single-value></b>
-    App Mem: <b><single-value
+    {{-- App Mem: <b><single-value
             endpoint="{{ Route('memoryused') }}"
-            interval="10000"
-          ></single-value>mb</b>
+            interval="1000"
+          ></single-value>mb</b> --}}
   </div>
   <!-- Default to the left -->
   <strong>Copyright &copy; {{ date('Y') }} <a href="#">{!! config('system_config.system.company_name') !!}</a>.</strong> All rights reserved.

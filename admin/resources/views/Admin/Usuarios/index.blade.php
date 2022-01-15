@@ -22,7 +22,9 @@
       $usersArr = $users['data'];
     }
 
-    $paginator = "";
+    $paginate_default = 2;
+
+    $paginator = "/?paginate=" . $paginate_default;
 
     foreach ($input as $key => $value) {
       $paginator = $paginator . "&" . $key . "=" . $value;
@@ -44,6 +46,7 @@
         <template slot="card-body">
           <form id="{{$form}}" action="{{Route('usuarios.index')}}" method="get">
             @csrf
+            <input type="hidden" name="paginate" value="{{$paginate_default}}">
 
             <div class="row">
               <div class="form-group col-3">
@@ -88,13 +91,33 @@
               </table>
             </div>
             <div class="card-footer">
-              Merda
+              <div class="row">
+                <div class="col-2">
+                  <ul class="pagination pagination-sm">
+                    <li class="page-item"><a class="page-link" href="{{ Route('usuarios.index') . $paginator . "&page=" . $users['prev_page'] }}">«</a></li>
+                    <li class="page-item"><a class="page-link" href="#">{{$users['actual_page']}}</a></li>
+                    <li class="page-item"><a class="page-link" href="{{ Route('usuarios.index') . $paginator . "&page=" . $users['next_page'] }}">»</a></li>
+                  </ul>
+                </div>
+                <div class="col-6">
+                  <p>Mostrando {{$users['items']}} de {{$users['count']}} itens encontrados</p>
+                </div>
+                <div class="col-4">
+                  <div class="form-group float-right">
+                    <select name="paginate" form={{$form}} class="custom-select">
+                      <option value="10" selected>10</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
             </div>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
 
-          <p>Paginação: {{ $users['first_page_url'] . $paginator }}</p>
+          {{-- <p>Paginação: {{ $users['first_page_url'] . $paginator }}</p> --}}
 
         @else
     
