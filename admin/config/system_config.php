@@ -14,6 +14,6 @@ return [
     ],
 
     'user' => [
-        'default_img' => '/bower_components/dist/img/profile.png'
+        'default_img' => '/bower_components/dist/img/profile.svg'
     ]
 ];

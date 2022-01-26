@@ -17,6 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('login/keycloak', 'Auth\LoginController@redirectToProvider')->name('social.login');
+Route::get('login/keycloak/callback', 'Auth\LoginController@handleProviderCallback')->name('social.callback');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('auth')->namespace('Admin')->prefix('admin')->group(function() {
