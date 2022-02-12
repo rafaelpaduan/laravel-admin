@@ -35,7 +35,10 @@ class UserController extends Controller
         $user = $request->validate([
             "firstName" => 'required|max:30',
             "lastName" => 'required|max:100',
-            "username" => 'required|unique:users',
+            "username" => [
+                'required',
+                Rule::unique('users')->where('deleted_at', null)
+            ],
             "nickName" => 'required',
             "password" => 'confirmed',
             "email" => 'required|email',
