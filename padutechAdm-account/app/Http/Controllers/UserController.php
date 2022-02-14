@@ -37,7 +37,7 @@ class UserController extends Controller
             "lastName" => 'required|max:100',
             "username" => [
                 'required',
-                Rule::unique('users')->where('deleted_at', null)
+                Rule::unique('users')->whereNull('deleted_at')
             ],
             "nickName" => 'required',
             "password" => 'confirmed',
